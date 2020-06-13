@@ -1,7 +1,10 @@
 import datetime
+from typing import List
 
 import sqlalchemy as sa
+import sqlalchemy.orm as orm
 from data.modelbase import SqlAlchemyBase
+from data.releases import Release
 
 
 class Package(SqlAlchemyBase):
@@ -22,7 +25,12 @@ class Package(SqlAlchemyBase):
     license = sa.Column(sa.String, index=True)
 
     # maintainers
-    # releases
+    # releases relationships
+    releases: List[Release] = orm.relation("Release", order_by=[
+        Release.major_ver.desc(),
+        Release.minor_ver.desc(),
+        Release.build_ver.desc(),
+    ], back_populates='package')
 
     def __repr__(self):
         return f'Package: {id}'

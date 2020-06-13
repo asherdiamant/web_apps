@@ -1,2 +1,3 @@
 /.project
 /db/pypi.sqlite
+/db/__init__.py

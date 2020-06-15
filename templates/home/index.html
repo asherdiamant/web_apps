@@ -11,9 +11,9 @@
     </div>
 
     <div class="pypi-stats">
-        <div class="stat">-1 projects</div>
-        <div class="stat">-1 releases</div>
-        <div class="stat">-1 users</div>
+        <div class="stat">{{ "{:,}".format(package_count) }} projects</div>
+        <div class="stat">{{ "{:,}".format(release_count) }} releases</div>
+        <div class="stat">{{ "{:,}".format(user_count) }} users</div>
     </div>
 
     <div class="container project-list">
@@ -26,12 +26,12 @@
                         Hot off the press: The newest projects releases
                     </div>
 
-                    {% for p in packages %}
+                    {% for r in releases %}
                     <div class="project">
                         <div class="title">
-                            <a href="#">{{ p.name }} {{ p.version }}</a>
+                            <a href="/project/{{ r.package.id }}">{{ r.package.id }} {{ r.version_text }}</a>
                             <div class="desc">
-                                THE DESC
+                                {{ r.package.summary }}
                             </div>
                         </div>
                     </div>

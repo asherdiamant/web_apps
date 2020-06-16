@@ -45,7 +45,7 @@ def register_post():
         vm.error = 'The account could not be created'
         return vm.to_dict()
 
-    resp = flask.redirect(url_for('account.index'))
+    resp = flask.redirect('/account')
     cookie_auth.set_auth(resp, user.id)
     return resp
 
